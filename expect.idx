@@ -1,0 +1,3 @@
+nimTitle	expect	expect.html	module src/expect		0
+nim	expect	expect.html#expect,Option[T],varargs[string,]	proc expect[T](opt: Option[T]; err_str: varargs[string, `$`]): T		4
+nim	expectProc	expect.html#expectProc,Option[T],proc	proc expectProc[T](opt: Option[T]; err_proc: proc): T		13
