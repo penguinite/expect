@@ -17,10 +17,10 @@ proc onFail() =
   echo "Obj failed ", i
 
 # Test successful object (proc version)
-assert opt.expectProc(onFail) == "Hello"
+assert opt.expect(onFail) == "Hello"
 
 # Test failure object
 assert opt2.expect("World") != "Hello"
 
 # Test failure object (proc version)
-assert opt2.expectProc(onFail) != "Hello"
+assert opt2.expect(onFail) != "Hello"
