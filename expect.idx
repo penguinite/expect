@@ -1,3 +1,6 @@
 nimTitle	expect	expect.html	module src/expect		0
-nim	expect	expect.html#expect,Option[T],varargs[string,]	proc expect[T](opt: Option[T]; err_str: varargs[string, `$`]): T		4
-nim	expectProc	expect.html#expectProc,Option[T],proc	proc expectProc[T](opt: Option[T]; err_proc: proc): T		13
+nim	expect	expect.html#expect,Option[T],varargs[string,]	proc expect[T](opt: Option[T]; err_str: varargs[string, `$`] = ""): T		25
+nim	expect	expect.html#expect,Option[T],proc	proc expect[T](opt: Option[T]; err_proc: proc): T		52
+nim	expectFunc	expect.html#expectFunc,Option[T],proc	proc expectFunc[T](opt: Option[T]; err_func: proc): T		78
+nim	expectProc	expect.html#expectProc,Option[T],proc	proc expectProc[T](opt: Option[T]; err_proc: proc): T		90
+nimgrp	expect	expect.html#expect-procs-all	proc		25
