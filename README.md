@@ -3,6 +3,9 @@
 Rust-style `expect` procedures for Nim.
 
 Note: `expect` only works with the `Option` object from [`std/options`](https://nim-lang.github.io/Nim/options.html)
+
+Proper documentation on how to use `expect` can be found [here](https://penguinite.github.io/expect/)
+
 ## How to use
 
 Install with nimble: `nimble install expect` or `nimble install https://github.com/penguinite/expect.git`
