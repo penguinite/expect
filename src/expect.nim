@@ -6,7 +6,8 @@
 ## * The second one when given a null `Option` will instead call the provided procedure and do nothing else.
 ## 
 ## Here is an example of how to use these
-runnableExamples:
+runnableExamples "-r:off":
+  import std/options
   # Let's say we are fetching some user data
   var
     user_submitted_data = some("Hello World!")
@@ -26,7 +27,8 @@ func expect*[T](opt: Option[T], err_str: varargs[string, `$`] = ""): T =
   ## And if it is then it will simply print the error message that is provided and quit with an error code of "1"
   ## 
   ## Here is an example
-  runnableExamples:
+  runnableExamples "-r:off":
+    import std/options
     type TokenKind = enum
       Symbol, Sign
     
@@ -47,23 +49,43 @@ func expect*[T](opt: Option[T], err_str: varargs[string, `$`] = ""): T =
   else:
     return opt.get()
 
-func expect*[T](opt: Option[T], err_func: func): T =
-  ## This procedure does the same things that `expect()` does, but it allows you to pass a procedure instead of printing an error message and quitting.
-  ## 
-  ## You sadly can't pass data to the procedure that will be called, but you can access variables in the function scope instead.
-  ## That might serve as a suitable alternative.
-  if isNone(opt):
-    err_func()
-  return opt.get()
-
 proc expect*[T](opt: Option[T], err_proc: proc): T =
   ## This procedure does the same things that `expect()` does, but it allows you to pass a procedure instead of printing an error message and quitting.
   ## 
   ## You sadly can't pass data to the procedure that will be called, but you can access variables in the function scope instead.
   ## That might serve as a suitable alternative.
+  runnableExamples "-r:off":
+    import std/options
+    type TokenKind = enum
+      Symbol, Sign
+    
+    # Some random data
+    # We can use expect to filter out any unknown tokens when we parse it.
+    let data: seq[Option[TokenKind]] = @[
+      some(Symbol), some(Symbol), none(TokenKind),
+    ]
+
+    var count = 0
+    proc log() =
+      echo "Unknown token encountered at position ", count, "!"
+      
+    for i in data:
+      discard i.expect(log)
   if isNone(opt):
     err_proc()
   return opt.get()
+
+func expectFunc*[T](opt: Option[T], err_func: func): T =
+  ## This procedure does the same things that `expect()` does, but it allows you to pass a procedure instead of printing an error message and quitting.
+  ## 
+  ## You sadly can't pass data to the procedure that will be called, but you can access variables in the function scope instead.
+  ## That might serve as a suitable alternative.
+  ## 
+  ## *This is just a `func`ified version, for functional no-side-effect calls.*
+  if isNone(opt):
+    err_func()
+  return opt.get()
+
 
 proc expectProc*[T](opt: Option[T], err_proc: proc): T 
   {.deprecated: "expectProc is now simply called expect(), Rename it if you'd like to".} =
