@@ -48,6 +48,7 @@ for i in data:
 
 var count = 0
 for i in data:
+  inc count
   # We can also use our own procedure instead of simply having expect() quit by itself.
   # This allows for even more flexibility, you can use your own logging procedures,
   # or maybe run a failsafe procedure, or anything else you'd like.
