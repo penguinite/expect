@@ -1,5 +1,9 @@
 # expect
 
+**Migration notice:** The git repository for this project has moved to [https://codeberg.org/penguinite/expect](https://codeberg.org/penguinite/expect), this link will still work but it will not contain any new updates.
+
+---
+
 Rust-style `expect` procedures for Nim.
 
 Note: `expect` only works with the `Option` object from [`std/options`](https://nim-lang.github.io/Nim/options.html)
